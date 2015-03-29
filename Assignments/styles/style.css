@@ -10,13 +10,13 @@ h2{
 .error{
 	color: red;
 }
+.error8{
+	color: red;
+	font-size: 5em;
+	margin-top: 1em;
+}
 #assignment-div{
 	margin-top: 1em;
 	line-height: 1.5em;
-
 }
-/* CSS for medium devices ≥768px */
-@media (min-width: 768px) {
-  
 
-/*# sourceMappingURL=style.css.map */
