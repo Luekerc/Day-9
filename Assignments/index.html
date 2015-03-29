@@ -13,38 +13,48 @@
     <h2>DAY 9 Assignments </h2>
   <!--assignment 1-->
     <div id="assignment-div">
-      <h2 class="head">Random Array Value</h2>
-      <div class="rules">A function that takes an array of values and returns one randomly selected value from that array. </div>
-      <button class="btn">Run</button>
+      <h2 class="head">#1. Random Array Value</h2>
+      <div class="rules">A function that takes an array of values: ["Item A","Item B","Item C"] and returns one randomly selected value from that array. </div>
+      <button id="btn">Run</button>
       <input type="text" id='result1' name="result" placeholder ="Answer will show here">
     </div>
 
-
-
+  <!--assignment 2-->
     <div id='assignment-div'>
-      <h2>ROT 13</h2>
-      <div>A function that takes an unencrypted string and returns the ROT-13 version of that string. 
+      <h2>#2. ROT 13</h2>
+      <div>This function takes an unencrypted string and returns the ROT-13 version of that string. 
       </div>
-      <input type="text" id='enter2' placeholder ="Enter a string">
+      <input type="text" id='enter2' placeholder ="Enter some text">
       <button id = "f2"> Run </button>
       <input type="text" id='result2' placeholder ="Answer will show here">
+      <h3 class="error">
+      </h3>
+    </div>
+
+    <div id='assignment-div'>
+      <h2> #3. This function takes a ROT-13 encrypted string from #2 above and returns the decrypted version of that string.</h2>
+      <div>Successfully complete step #2 above to create the ROT-13 string, then run this function</div>
+      <button id = "f3"> Run </button>
+      <h3> The answer will appear here:</h3>
+      <h2 id='result3'></h2>
+    </div>
+
+
+
+    <div id='assignment-div'> 
+      <h2>#4. A function that takes an unencrypted string and an integer (n) and returns the ROT-N version of that string.</h2>
+      <input type="text" id='enter4' placeholder ="Enter a string">
+      <input type="number" id='enter4-1' placeholder ="Enter an number">
+      <button id="btn4"> Run </button>
+      <h2 class="error4"></h2>
+      <h2 id='result4'>
     </div>
 
 
 
 
-      <!--   <li> Function 3: A function that takes a ROT-13 encrypted string and returns the decrypted version of that string. </li>
-          <input type="text" id='enter3' placeholder ="Enter a ROT-13 string">
-          <button id = "f3"> Run </button>
-          <input type="text" id='result3' placeholder ="Answer will show here"> -->
 
-
-
-<!--         <li> Function 4: A function that takes an unencrypted string and an integer (n) and returns the ROT-N version of that string. </li>
-          <input type="text" id='enter4' placeholder ="Enter a string">
-          <input type="number" id='enter4-1' placeholder ="Enter an number">
-          <button id = "f4"> Run </button>
-          <input type="text" id='result4' placeholder ="Answer will show here">
+ <!--          
         <li> Function 5: A javascript function that takes an array of student names and returns an array of randomly selected pairs of students (array of arrays). </li>
           <input type="text" id='enter5' placeholder ="Enter an array">
           <button id = "f5"> Run </button>

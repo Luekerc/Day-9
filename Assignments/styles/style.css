@@ -7,6 +7,9 @@ body{
 h2{
 	font-weight: bold;
 }
+.error{
+	color: red;
+}
 #assignment-div{
 	margin-top: 1em;
 	line-height: 1.5em;
