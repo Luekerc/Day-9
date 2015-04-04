@@ -1,8 +1,5 @@
-var rot;
-
 $(document).ready(function(){
 
-var rot;
 // Assignment 1
 function randomArray(array){
 var randomNumber=Math.floor(Math.random()*3);
@@ -94,17 +91,6 @@ function rot13Decoder (encodedString) {
 	var upperMin = 'A'.charCodeAt();
 	var upperMiddle = 'M'.charCodeAt();
 	var upperMax = 'Z'.charCodeAt();
-	
-	//data validation
-	if (typeof(encodedString) != 'string') {
-		throw 'You did not enter a string.';
-	} 
-	for (var y =0; y < encodedString.length; y++) {
-
-		if ((encodedString[y].charCodeAt() > lowerMax) || (encodedString[y].charCodeAt() < upperMin)) {
-			throw 'You can only encode letters from a to z (or uppercase A to Z)';
-		}
-	}
 
 	//function
 	for(var i = 0; i < encodedString.length; i++) {
@@ -138,17 +124,20 @@ $('#f3').click(function() {
 });
 
 //Function 4
-function rotN (unencrypted, n) {
+function rotN(unencrypted, n){
+	var encrypted = '';
 
-	if(unencrypted === undefined) {
-	throw 'You must enter string to encrypt.';
-	// && $('.error4').html('You must enter string to encrypt.')
+	
+	if(unencrypted === '') {
+	$('.error4').html('You must enter string to encrypt.');
 	}
 	
+	if(typeof n !== 'number') {
+	$('.error4b').html('You must enter a number.');
+	}
 
 	if(typeof unencrypted !== 'string') {
-	throw 'The first argument must be a string';
-	// && $('.error4').html('The first argument must be a string')
+	$('.error4').html('The first argument must be a string')
 	}
 
 	for(var i=0; i<unencrypted.length; i++) {
@@ -156,12 +145,9 @@ function rotN (unencrypted, n) {
 		targetCharacter = targetCharacter.toLowerCase();
 		var targetCharacterCode = targetCharacter.charCodeAt(0);
 		if(targetCharacterCode < 97 || targetCharacterCode > 122) {
-		throw 'The unencrypted string can only have a-z or A-Z';
-		// && $('.error4').html('The unencrypted string can only have a-z or A-Z')
+		$('.error4').html('The unencrypted string can only have a-z or A-Z');
 		}
 	}
-
-	var encrypted = '';
 
 	for(var i=0; i<unencrypted.length; i++) {
 		var charCode = unencrypted.charCodeAt(i);
@@ -184,12 +170,13 @@ function rotN (unencrypted, n) {
 }
 
 $('#btn4').click(function() {
-	console.log('checking');
+	$('.error4').html('');
 	var textInput = $('#enter4').val();
-	var numInput = $('#enter4-1').val();
-	numInput = parseInt(numInput);
+	var numInput = $('#enter41').val();
+	// numInput = parseInt(numInput);
 	$('#result4').val(rotN(textInput,numInput));
 });
+
 
 
 //Function 5
