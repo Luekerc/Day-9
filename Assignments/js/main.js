@@ -43,6 +43,7 @@ function randomPairing(inputArray){
 				console.log(typeof finalArray);
 			}	
 		// pairs.push(']');
+		console.log(typeof pairs);
 		var arr = $.makeArray(pairs);
 		console.log(arr);
 		//Problem: when 'arr' console.logs 
