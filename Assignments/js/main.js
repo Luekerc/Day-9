@@ -35,16 +35,23 @@ function randomPairing(inputArray){
 		var rightHalf = newArray;
 		console.log(leftHalf);
 		console.log(rightHalf);
-		for (var i in leftHalf){
-			for (var j in rightHalf){
-				pairs.push("["+leftHalf[j]+", "+rightHalf[j]+"]");
-			}
-			finalArray = ("[" + pairs.splice(0, pairs.length/2) + "]");
-			console.log(typeof pairs);
-		}	
-		pairs.push(']');
+			for (var i in leftHalf){
+				for (var j in rightHalf){
+					pairs.push("["+leftHalf[j]+", "+rightHalf[j]+"]");
+				}
+				finalArray = ("[" + pairs.splice(0, pairs.length/2) + "]");
+				console.log(typeof finalArray);
+			}	
+		// pairs.push(']');
+		var arr = $.makeArray(pairs);
+		console.log(arr);
+		//Problem: when 'arr' console.logs 
+		//it looks like an array, but when 
+		//I check its typeof, it shows as an 
+		//object
+		console.log(typeof arr);
 		return finalArray;
-	}
+		}
 	}	
 }
 
