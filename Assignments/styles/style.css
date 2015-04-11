@@ -10,9 +10,24 @@ h2{
 .error{
 	color: red;
 }
+.error5{
+	color: red;
+	font-size: 1em;
+	margin-top: 1em;
+}
+.error6{
+	color: red;
+	font-size: 1em;
+	margin-top: 1em;
+}
+.error7{
+	color: red;
+	font-size: 1em;
+	margin-top: 1em;
+}
 .error8{
 	color: red;
-	font-size: 5em;
+	font-size: 1em;
 	margin-top: 1em;
 }
 #assignment-div{

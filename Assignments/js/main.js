@@ -1,61 +1,60 @@
-$(document).ready(function(){
 
-// Assignment 1
-function randomArray(array){
-var randomNumber=Math.floor(Math.random()*3);
-return array[randomNumber];
-}
-
+// #1 - Function 1
 $('#btn').click(function(){
 	var myArray=["Item A","Item B","Item C"];
-	$('#result1').val(randomArray(myArray));
-})
+	var randomNumber=Math.floor(Math.random()*3);
+	var finalArray = myArray[randomNumber];
+	$('#result1').val(finalArray);
+});
 
-//Function 2
+//#2 - Function 5
 function randomPairing(inputArray){
 	var finalArray = [];
 	if (inputArray.length%2!=0){
-		$(".error5").html("You must enter an even number of items");
+		$(".error5").html("You must enter an even number of items\
+		                   separated by commas");
 	}else{
+		$(".error5").html("");
 
 		for (var i=0; i<inputArray.length; i++){
 			var pairs = [];
+			//For some reason I have to push a "[", but not a "]"
+			//later as I'd expect.
 			pairs.push('[');
-		//randomly sort the names within the array to create newArray
-		//I found the sort(0.5-math.random()) at 
-		//Stack Overflow but don't fully understand how it works
-		//http://stackoverflow.com/questions/21295162/javascript-randomly-pair-items-from-array-without-repeats
-		var newArray = inputArray.sort(function(){return 0.5 - Math.random()});
-		//splice the array in half starting at position 0
-		//and create a leftHalf array and a rightHalf array
-		//using splice in this way came from Stack Overflow
-		//http://stackoverflow.com/questions/9181188/splice-
-		//an-array-in-half-no-matter-the-size
-		var leftHalf = newArray.splice(0,newArray.length/2);
-		var rightHalf = newArray;
-		console.log(leftHalf);
-		console.log(rightHalf);
+			//"var newArray" randomly sorts "inputArray"
+			//Note: I found the sort(0.5-math.random()) at 
+			//Stack Overflow. I don't fully understand how it works.
+			//http://stackoverflow.com/questions/21295162/javascript-randomly-pair-items-from-array-without-repeats
+			var newArray = inputArray.sort(function(){
+				return 0.5 - Math.random();
+			});
+			//Cut "newArray" in half starting at position 0
+			//to create two arrays which will be used to pair w/each other.
+			//http://stackoverflow.com/questions/9181188/splice-
+			//an-array-in-half-no-matter-the-size
+			var leftHalf = newArray.splice(0,newArray.length/2);
+			var rightHalf = newArray;
+			//Next, I run a loop to pair the two arrays' values
+			//Source: http://bytes.com/topic/javascript/insights/699379-optimize-loops-compare-two-arrays
 			for (var i in leftHalf){
 				for (var j in rightHalf){
 					pairs.push("["+leftHalf[j]+", "+rightHalf[j]+"]");
 				}
+				//The code above gives me two identical outputs right
+				//next to each other so the following splits that in half.
 				finalArray = ("[" + pairs.splice(0, pairs.length/2) + "]");
-				console.log(typeof finalArray);
 			}	
-		// pairs.push(']');
-		console.log(typeof pairs);
-		var arr = $.makeArray(pairs);
-		console.log(arr);
-		//Problem: when 'arr' console.logs 
-		//it looks like an array, but when 
-		//I check its typeof, it shows as an 
-		//object
-		console.log(typeof arr);
-		return finalArray;
+			//"pairs" is an object/array for future use, but
+			//"finalArray" is a string for the html display
+			console.log(typeof pairs);
+			console.log(typeof finalArray);
+			console.log(pairs);
+			//verifying we can access pairs just like an array 
+			console.log(pairs[1]);
+			return finalArray;
 		}
 	}	
-}
-
+};
 
 $('#f5').click(function() {
 	var textInput=[];
@@ -67,69 +66,87 @@ $('#f5').click(function() {
 	//take the split data from textArray and run it through 
 	//the function randomPairing above
 	$('#result5').val(randomPairing(inputArray));
- })
+ });
 
-//Function 6
-function dashString(string) {
-
-	var arrayOfString = string.split('');
-
-	if (typeof string != 'string') {
-		throw 'You did not enter an string.';
-	}
-	return arrayOfString.join('-');
-}
-
-
+//#3 - Function 6
 $('#f6').click(function() {
-	var textInput = $('#enter6').val();
-	$('#result6').val(dashString(textInput));
+	//The #enter6.val() is a string by default
+	//since its a text box.  Hence, no 'typeof'
+	// validation is needed.
+	var sixInput = $('#enter6').val();
+	if (sixInput===""){
+		$(".error6").html("You must type something.");
+	}else{
+		$(".error6").html("");
+	//I found I could have the .split and .join on the same line
+	//from Daniel St. Clair's Day-9 github example.  Otherwise, I had
+	//to define an extra variable for the ".join".
+	var dashedString = sixInput.split('').join('-');
+	$('#result6').val(dashedString);
+	}
 });
 
-//Function 7
-function noJoinString(string) {
-	var newString = '';
-	if (typeof string != 'string') {
-		throw 'You did not enter an string.';
-	}
-
-	for(var i =0; i < string.length; i++) {
-        newString += string.slice(i, i+1)+"-";
-	}
-	newString = newString.slice(0,-1);
-	return newString;
-}
-
+//#4 - Function 7
 $('#f7').click(function() {
-	var textInput = $('#enter7').val();
-	$('#result7').val(dashString(textInput));
+	var string = $('#enter7').val();
+	if (string===""){
+		$(".error7").html("You must type something.");
+	}
+	else{
+
+		$(".error7").html("");
+		var thisString='';
+		for(var i=0; i<string.length; i++){
+			//Adapted from Stackoverflow "Add a space between 
+			//characters in a string [duplicate]".
+			//As the string is iterated over, each character
+			//place is concantenated with a "-".
+			thisString += string.charAt(i)+"-";
+			//"thisString" is a string where every character is
+			//separated by a "-", but there is still one extra "-"
+			//at the end.
+			console.log(thisString);
+		}
+		//Since the above code gave us an extra "-" at the end, we need a new string.
+		//This code uses .slice() and specifies that we want to start at place 0
+		//,the first letter, and end at the penultimate character.
+		thisString = thisString.slice(0, thisString.length-1);
+		console.log(thisString);
+		//Now we post the result, "thisString", in the html
+		$('#result7').val(thisString);
+	}
 });
 
-//Function 8
-function noJoin2Strings(string1, string2) {
-	var combinedString = string1 + string2;
-	console.log(combinedString);
-	var newString = '';
 
-	if (typeof string1 !='string' || typeof string2 !='string') {
-
-	}
-
-	for(var i =0; i < combinedString.length; i++) {
-        newString += combinedString.slice(i, i+1)+"-";
-	}
-	newString = newString.slice(0,-1);
-	return newString;
-}
-
+//#5 - Function 8
 $('#f8').click(function() {
-	var textInput = $('#enter8').val();
+	var textInput1 = $('#enter8').val();
 	var textInput2 = $('#enter8-1').val();
-
-	$('#result8').val(noJoin2Strings(textInput,textInput2));
+	//Concantinating the two input strings
+	var combinedString = textInput1 + textInput2;
+	console.log(combinedString);
+	var thisString = '';
+	var newString;
+	if (textInput1===""||textInput2===""){
+		$(".error8").html("You must type something in each box.");
+	}
+	else
+	{
+		$(".error8").html("");
+		for(var i =0; i<combinedString.length; i++) {
+	       	 thisString += combinedString.charAt(i)+"-";
+	       	 console.log(thisString);
+		}
+		newString = thisString.slice(0, thisString.length-1);
+		console.log(newString);
+	}
+	$('#result8').val(newString);
 });
-});
 
+
+
+// The following code is taken from Travis Cwerz' Day-9 GitHub repository 
+// with some minor adjustments on my part 
 //Assignment 2
 // function rot13Encoder (undecodedString) {
 	//variable declaration
